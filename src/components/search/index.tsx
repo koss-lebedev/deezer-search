@@ -62,7 +62,7 @@ const Search: FC = () => {
   });
 
   const dropdownStyle = useSpring({
-    maxHeight: state === "collapsed" || state === "open" ? 0 : 219
+    height: state === "collapsed" || state === "open" ? 0 : 219
   });
 
   const dividerStyle = useSpring({
@@ -71,13 +71,15 @@ const Search: FC = () => {
 
   const searchingPanelStyle = useSpring({
     opacity: state === "searching" ? 1 : 0,
-    transform: `translateY(${state === "searching" ? 0 : 20}px)`
+    transform: `translateY(${state === "searching" ? 0 : 20}px)`,
+    width: state === "searching" ? "auto" : 0
   });
 
   const resultPanelStyle = useSpring({
     opacity: state === "result" ? 1 : 0,
     transform: `translateY(${state === "result" ? 0 : 20}px)`,
-    height: state === "result" ? "auto" : 0
+    height: state === "result" ? "auto" : 0,
+    width: state === "result" ? "auto" : 0
   });
 
   return (
@@ -96,19 +98,13 @@ const Search: FC = () => {
       </Controls>
       <AnimatedDivider style={dividerStyle} />
       <AnimatedDropdown style={dropdownStyle}>
-        <AnimatedResultPanel
-          style={resultPanelStyle}
-          isOpen={state === "result"}
-        >
+        <AnimatedResultPanel style={resultPanelStyle}>
           <Title>Search results</Title>
           {data.map(track => (
             <Item value={track} key={track.id} />
           ))}
         </AnimatedResultPanel>
-        <AnimatedSearchingPanel
-          style={searchingPanelStyle}
-          isOpen={state === "searching"}
-        >
+        <AnimatedSearchingPanel style={searchingPanelStyle}>
           <Title>Searching...</Title>
           <Placeholder />
           <Placeholder />

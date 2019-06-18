@@ -45,11 +45,8 @@ export const Title = styled.p`
   padding: 0 20px;
 `;
 
-export const SearchingPanel = styled.div<{ isOpen: boolean }>`
-  width: ${props => (props.isOpen ? "auto" : 0)};
-`;
+export const SearchingPanel = styled.div``;
 
-export const ResultPanel = styled.div<{ isOpen: boolean }>`
-  width: ${props => (props.isOpen ? "auto" : 0)};
+export const ResultPanel = styled.div`
   overflow: hidden;
 `;
